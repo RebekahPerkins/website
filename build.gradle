@@ -1,0 +1,41 @@
+group 'com.rebekahperkins.website'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories{
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.9.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.4.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.10.Final'
+    compile group: 'org.apache.tomcat', name: 'tomcat-dbcp', version: '8.5.15'
+    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
+
+    runtime 'com.h2database:h2'
+    runtime 'javax.transaction:jta:1.1'
+    runtime 'org.apache.httpcomponents:httpclient:4.5.3'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.security:spring-security-test'
+    testCompile group: 'com.github.springtestdbunit', name: 'spring-test-dbunit', version: '1.3.0'
+    testCompile 'org.dbunit:dbunit:2.5.3'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
