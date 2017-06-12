@@ -6,3 +6,11 @@ body {
 .hello {
   color: white;
 }
+
+.hidden {
+    display:none;
+}
+
+.unhidden {
+    display:block;
+}
