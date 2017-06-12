@@ -8,25 +8,66 @@
 
 <body>
 
-<div>
-    <a href="javascript:unhide('content1')" class="button">Cat 1</a>
-    <a href="javascript:unhide('content2')" class="button">Cat 2</a>
-    <a href="javascript:unhide('content3')" class="button">Cat 3</a>
-    <a href="javascript:unhide('content4')" class="button">Cat 4</a>
-</div>
-<div id="content">
+<div id="content" class="content">
+    <a href="javascript:unhide('content1','button1')" id="button1"><img th:src="@{/assets/css/images/cat1.jpg}" alt="cat 1" class="cat cat1"/></a>
+    <a href="javascript:unhide('content2','button2')" id="button2"><img th:src="@{/assets/css/images/cat2.jpg}" alt="cat 2" class="cat cat2"/></a>
+
     <div id="content1" class="hidden">
-        <p>Content 1</p>
+        <p class="heading">Hello! I'm Rebekah Perkins.</p>
+        <p>I made this website to demonstrate some of my skills.</p>
+        <img th:src="@{/assets/css/images/derouxphoto1.jpg}" alt="Portrait" class="portrait"/>
+        <p>I like developing software, primarily with Java or Python. I'm self-taught and have 4 1/2 years of industry experience in development. Currently I'm taking time off to advance my skills before getting a new job.</p>
+        <p>Thanks for visiting and enjoy!</p>
     </div>
     <div id="content2" class="hidden">
-        <p>Content 2</p>
+        <p class="heading">Resources</p>
+        <p><a href="https://teamtreehouse.com/">Treehouse has great courses</a></p>
+        <p><a href="https://cognitiveclass.ai/">Cognitive Class also has great courses</a></p>
+        <p><a href="http://backgrounds.mysitemyway.com/faqs/">Source of background, licensed under creative commons</a></p>
+        <p><a href="http://ariamisu.deviantart.com/art/CAT-BASES-2-553337833">Source of cat icon base, license under creative commons</a></p>
     </div>
     <div id="content3" class="hidden">
-        <p>Content 3</p>
+        <p class="heading">Resume</p>
+        <p>
+            <button>Print</button>
+            REBEKAH PERKINS
+            r.perkins.smith@gmail.com
+            605 Boylston Ave E, apt 108, Seattle, WA, 98102
+            (206)799-6411
+
+
+            OBJECTIVES
+            To obtain a software engineer position, with focus on Python or data analysis
+
+            EDUCATION
+            LSU  |  2007  |  Master’s of Science in Environmental Science, with Statistics Minor
+            University of Louisiana  |  2005  |  Bachelor’s in General Studies
+
+            EXPERIENCE
+            Conenza  |  Software developer  |  December 2013 – present
+            Lead developer for search and indexing, user registration, external API integrations
+            Database design, management, and reporting
+            New client implementations
+            Assisting QA with security testing, API testing
+            Fixing all manner of bugs
+
+            Conenza  |  QA  |  January 2013 – December 2013
+            Black box testing
+
+            SKILLS
+            •	Java, MySQL, Python, and some Perl
+            •	REST API, ElasticSearch, Spring MVC, OAuth 2.0, curl, Hibernate, HTML
+
+        </p>
     </div>
     <div id="content4" class="hidden">
-        <p>Content 4</p>
+        <br/><br/><br/><br/><br/>
+        <p>Cat poems!!</p>
+        <br/><br/><br/><br/><br/>
     </div>
+
+    <a href="javascript:unhide('content3','button3')" id="button3"><img th:src="@{/assets/css/images/cat3.jpg}" alt="cat 3" class="cat cat3"/></a>
+    <a href="javascript:unhide('content4','button4')" id="button4"><img th:src="@{/assets/css/images/cat4.jpg}" alt="cat 4" class="cat cat4"/></a>
 </div>
 
 <script type="text/javascript" th:src="@{/assets/js/script.js}"></script>

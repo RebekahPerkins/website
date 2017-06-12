@@ -1,16 +1,89 @@
 body {
   background-image: url(images/lightblurs.png);
-  font-family: Arial;
-}
-
-.hello {
-  color: white;
 }
 
 .hidden {
-    display:none;
+  display: none;
 }
 
 .unhidden {
-    display:block;
+  display: block;
+  margin: 60px;
+  font-size: 18px;
+}
+
+.content {
+  font-family: Verdana;
+  color: white;
+  margin: auto;
+  margin-top: 200px;
+  width: 0%;
+  position: relative;
+  line-height: 20px;
+}
+
+a: {
+  color: #ffa7e1;
+  text-decoration: none;
+}
+
+.heading {
+  font-size: 24px;
+}
+
+#button1 {
+  position: absolute;
+  left: -150px;
+  top: -150px;
+}
+
+#button2 {
+  position: absolute;
+  right: -150px;
+  top: -150px;
+}
+
+#button3 {
+  position: absolute;
+  left: -150px;
+  bottom: -150px;
+}
+
+#button4 {
+  position: absolute;
+  right: -150px;
+  bottom: -150px;
+}
+
+.cat {
+  border-radius: 50%;
+  height: 150px;
+}
+
+.selectedcat {
+  height: 200px;
+}
+
+.cat1 {
+  border: 3px solid #e4aefa;
+}
+
+.cat2 {
+  border: 3px solid #ffa7e1;
+}
+
+.cat3 {
+  border: 3px solid #aadeff;
+}
+
+.cat4 {
+  border: 3px solid #b0adff;
+}
+
+.portrait {
+  border-radius: 50%;
+  display: block;
+  width: 40%;
+  margin: auto;
+  border: 6px solid #7a0ba5;
 }
