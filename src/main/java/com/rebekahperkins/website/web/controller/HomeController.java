@@ -11,4 +11,9 @@ public class HomeController {
   public String home(Model model){
     return "home";
   }
+
+  @RequestMapping("/resume")
+  public String resume(Model model){
+    return "rpresume2";
+  }
 }
