@@ -15,7 +15,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.rebekahperkins.dao")
+@EnableJpaRepositories(basePackages = "com.rebekahperkins.website.dao")
 @PropertySource("application.properties")
 public class DataConfig {
     @Autowired
