@@ -14,7 +14,7 @@ body {
 
 .content {
   font-family: Verdana;
-  color: white;
+  color: #dad9fc;
   margin: auto;
   margin-top: 200px;
   width: 0%;
@@ -22,9 +22,13 @@ body {
   line-height: 20px;
 }
 
-a: {
+a {
   color: #ffa7e1;
   text-decoration: none;
+}
+
+a:hover {
+  color: #b0adff;
 }
 
 .heading {
@@ -60,6 +64,10 @@ a: {
   height: 150px;
 }
 
+.cat:hover {
+  height: 200px;
+}
+
 .selectedcat {
   height: 200px;
 }
@@ -83,7 +91,24 @@ a: {
 .portrait {
   border-radius: 50%;
   display: block;
-  width: 40%;
+  width: 50%;
   margin: auto;
   border: 6px solid #7a0ba5;
+}
+
+.socmed {
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  border: 3px solid #7a0ba5;
+}
+
+.socmed:hover {
+  border: 3px solid #b0adff;
+}
+
+.socmedcontainer {
+  margin: auto;
+  display: block;
+  width: 50%;
 }
