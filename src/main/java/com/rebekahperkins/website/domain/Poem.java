@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Poem {
@@ -20,6 +21,8 @@ public class Poem {
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User submittedBy;
+  @Transient
+  private boolean favorite;
 
   public User getSubmittedBy() {
     return submittedBy;
@@ -59,5 +62,13 @@ public class Poem {
 
   public void setSource(String source) {
     this.source = source;
+  }
+
+  public boolean isFavorite() {
+    return favorite;
+  }
+
+  public void setFavorite(boolean favorite) {
+    this.favorite = favorite;
   }
 }

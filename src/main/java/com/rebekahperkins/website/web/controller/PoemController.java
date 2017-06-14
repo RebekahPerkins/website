@@ -29,9 +29,12 @@ public class PoemController {
     return "cats";
   }
 
-  @RequestMapping(path = "/vote", method = RequestMethod.POST)
-  public String toggleVote(Model model) {
-    return "redirect:/cats";
+  @RequestMapping(path = "/cats/{id}/favorite", method = RequestMethod.POST)
+  public String toggle(@PathVariable Long id, Model model, Principal principal) {
+    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    poemService.toggleFavorite(id, loggedInUser);
+
+    return "redirect:/cats/" + id;
   }
 
   @RequestMapping("/my_cats")
@@ -40,8 +43,10 @@ public class PoemController {
   }
 
   @RequestMapping("cats/{id}")
-  public String detail(@PathVariable Long id, Model model) {
+  public String detail(@PathVariable Long id, Model model, Principal principal) {
+    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     Poem poem = poemService.get(id);
+    poem.setFavorite(poemService.isFavorite(id, loggedInUser.getId()));
     model.addAttribute("poem", poem);
     return "detail";
   }

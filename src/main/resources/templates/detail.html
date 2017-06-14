@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/app.css}"/>
 </head>
 <body>
-    <span th:text="${poem.name}">Poem name</span>
-    <span th:text="${poem.content}">Contents should be here</span>
-    <span th:text="${poem.source}">Source</span>
-    <span th:text="${poem.submittedBy.username}">Submitted by here</span>
+<form th:action="@{|/cats/${poem.id}/favorite|}" method="post">
+    <button type="submit" th:class="(${poem.favorite}? 'un' : '') + 'mark_favorite'"></button>
+</form>
 
-    <a th:href="@{|/cats/${poem.id}/edit|}" >Edit</a>
+<span th:text="${poem.name}">Poem name</span>
+<span th:text="${poem.content}">Contents should be here</span>
+<span th:text="${poem.source}">Source</span>
+<span th:text="${poem.submittedBy.username}">Submitted by here</span>
+
+<a th:href="@{|/cats/${poem.id}/edit|}" >Edit</a>
 </body>
 </html>
