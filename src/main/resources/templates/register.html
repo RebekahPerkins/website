@@ -7,8 +7,10 @@
 <body>
 <div>
     <form th:action="@{/register}" th:object="${user}" method="post">
-        <input th:field="*{username}" placeholder="username"/>
-        <input th:field="*{password}" type="password" placeholder="password"/>
+        <input th:field="*{firstName}" placeholder="First Name"/>
+        <input th:field="*{lastName}" placeholder="Last Name"/>
+        <input th:field="*{username}" placeholder="Username"/>
+        <input th:field="*{password}" type="password" placeholder="Password"/>
         <button type="submit">Register</button>
     </form>
 </div>

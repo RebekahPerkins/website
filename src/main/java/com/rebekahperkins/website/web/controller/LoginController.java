@@ -9,15 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-  @RequestMapping("/login")
+  @RequestMapping(path = "/login", method = RequestMethod.GET)
   public String getLoginPage(Model model) {
     model.addAttribute("user", new User());
     return "login";
-  }
-
-  @RequestMapping(path = "/login", method = RequestMethod.POST)
-  public String login(Model model){
-    return "redirect:/cats";
   }
 
   @RequestMapping("/access_denied")
