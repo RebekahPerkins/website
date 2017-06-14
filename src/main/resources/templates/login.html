@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+    <div><a th:href="@{/register}">Register</a></div>
     <div>
         <form th:action="@{/login}" th:object="${user}" method="post">
             <input th:field="*{username}" placeholder="username"/>
