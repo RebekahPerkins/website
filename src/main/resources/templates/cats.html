@@ -10,7 +10,7 @@ Here is the cats page
 Latest poems
 <ul>
     <li th:each="poem : ${page.content}">
-        <span th:text="${poem.name}">Name</span>
+        <a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a>
         <br/>
         <span th:text="${poem.content}">Content</span>
         <br/>
