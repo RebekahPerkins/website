@@ -70,10 +70,6 @@ public class PoemController {
   public String edit (Poem poem, Model model, Principal principal) {
     User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     poem.setSubmittedBy(loggedInUser);
-    //creates a new record for edit
-    if (null != poem.getId()){
-      poem = poemService.get(poem.getId());
-    }
     poem = poemService.addOrUpdate(poem);
     return "redirect:/cats/" + poem.getId();
   }
