@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <span th:text="${poem.name}">Poem name</span>
+    <span th:text="${poem.content}">Contents should be here</span>
+    <span th:text="${poem.source}">Source</span>
+    <span th:text="${poem.submittedBy.username}">Submitted by here</span>
+
+    <a th:href="@{|/cats/${poem.id}/edit|}" >Edit</a>
+</body>
+</html>

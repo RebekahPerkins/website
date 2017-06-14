@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/addoredit}" th:object="${poem}" method="post">
+        <input th:field="*{name}" placeholder="Name"/>
+        <input th:field="*{content}"/>
+        <input th:field="*{source}" placeholder="Source"/>
+        <button type="submit" >Submit</button>
+    </form>
+</div>
+</body>
+</html>
