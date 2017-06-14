@@ -18,4 +18,6 @@ public interface PoemService {
   void toggleFavorite(Long id, User user);
 
   boolean isFavorite(Long poemId, Long userId);
+
+  Page<Poem> findBySubmittedBy(User user, Pageable pageable);
 }

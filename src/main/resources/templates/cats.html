@@ -7,39 +7,9 @@
 <body>
 Here is the cats page
 <div><a th:href="@{/add}">Add a poem</a></div>
+<div><a th:href="@{/my_cats}">My poems</a></div>
 Latest poems
-<ul>
-    <li th:each="poem : ${page.content}">
-        <a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a>
-        <br/>
-        <span th:text="${poem.content}">Content</span>
-        <br/>
-    </li>
-</ul>
-
-<div>
-    <ul>
-        <li th:class="${page.number eq 0} ? 'disabled' : ''">
-            <a th:if="${not page.first}" th:href="@{${'/cats'}(page=${page.number-1},size=${page.size})}">Previous</a>
-            <a th:if="${page.first}" href="javascript:void(0);">Previous</a>
-        </li>
-
-        <li th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}" th:class="${page.number eq pageNo}? 'active' : ''">
-            <a th:if="${page.number  eq pageNo}" href="javascript:void(0);">
-                <span th:text="${pageNo + 1}"></span>
-            </a>
-            <a th:if="${not (page.number  eq pageNo)}" th:href="@{${'/cats'}(page=${pageNo},size=${page.size})}">
-                <span th:text="${pageNo + 1}"></span>
-            </a>
-
-        </li>
-        <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
-            <a th:if="${not page.last}" th:href="@{${'/cats'}(page=${page.number+1},size=${page.size})}">Next</a>
-            <a th:if="${page.last}" href="javascript:void(0);">Next</a>
-        </li>
-    </ul>
-</div>
-
+<div th:replace="layout :: pagecats"></div>
 
 </body>
 </html>

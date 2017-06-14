@@ -58,4 +58,10 @@ public class PoemServiceImpl implements PoemService {
   public boolean isFavorite(Long poemId, Long userId) {
     return null == favoriteDao.getByPoemIdAndUserId(poemId, userId);
   }
+
+  @Override
+  public Page<Poem> findBySubmittedBy(User user, Pageable pageable) {
+    Page<Poem> poems = poemDao.findBySubmittedBy(user, pageable);
+    return poems;
+  }
 }

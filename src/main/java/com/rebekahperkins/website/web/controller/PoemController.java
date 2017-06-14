@@ -26,6 +26,7 @@ public class PoemController {
   public String getLangingPage(Model model, Pageable pageable) {
     Page<Poem> page = poemService.findAll(pageable);
     model.addAttribute("page", page);
+    model.addAttribute("referrer", "/cats");
     return "cats";
   }
 
@@ -38,7 +39,11 @@ public class PoemController {
   }
 
   @RequestMapping("/my_cats")
-  public String getMyCats(Model model) {
+  public String getMyCats(Model model, Pageable pageable, Principal principal) {
+    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    Page<Poem> page = poemService.findBySubmittedBy(loggedInUser, pageable);
+    model.addAttribute("page", page);
+    model.addAttribute("referrer", "/my_cats");
     return "my_cats";
   }
 
