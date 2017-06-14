@@ -5,7 +5,6 @@ import com.rebekahperkins.website.domain.User;
 import com.rebekahperkins.website.service.PoemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,5 +71,11 @@ public class PoemController {
     poem.setSubmittedBy(loggedInUser);
     poem = poemService.addOrUpdate(poem);
     return "redirect:/cats/" + poem.getId();
+  }
+
+  @RequestMapping(path = "/delete", method = RequestMethod.DELETE)
+  public String delete (Poem poem, Model model) {
+    poemService.delete(poem);
+    return "redirect:/cats";
   }
 }

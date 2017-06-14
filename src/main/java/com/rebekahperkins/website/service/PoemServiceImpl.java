@@ -19,4 +19,9 @@ public class PoemServiceImpl implements PoemService {
   public Poem get(Long id) {
     return poemDao.findOne(id);
   }
+
+  @Override
+  public void delete(Poem poem) {
+    poemDao.delete(poem);
+  }
 }

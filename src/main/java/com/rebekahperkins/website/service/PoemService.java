@@ -7,4 +7,6 @@ public interface PoemService {
   Poem addOrUpdate(Poem poem);
 
   Poem get(Long id);
+
+  void delete(Poem poem);
 }

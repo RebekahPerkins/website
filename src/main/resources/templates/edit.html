@@ -13,6 +13,7 @@
         <input type="hidden" th:field="*{id}"/>
         <button type="submit" >Submit</button>
     </form>
+    <form action="@{/delete}" th:object="${poem}" method="delete"></form>
 </div>
 </body>
 </html>
