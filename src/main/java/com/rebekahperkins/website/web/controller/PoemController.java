@@ -4,6 +4,8 @@ import com.rebekahperkins.website.domain.Poem;
 import com.rebekahperkins.website.domain.User;
 import com.rebekahperkins.website.service.PoemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,9 @@ public class PoemController {
   private PoemService poemService;
 
   @RequestMapping("/cats")
-  public String getLangingPage(Model model) {
+  public String getLangingPage(Model model, Pageable pageable) {
+    Page<Poem> page = poemService.findAll(pageable);
+    model.addAttribute("page", page);
     return "cats";
   }
 

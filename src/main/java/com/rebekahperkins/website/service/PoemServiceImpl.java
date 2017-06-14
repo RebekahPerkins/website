@@ -3,6 +3,8 @@ package com.rebekahperkins.website.service;
 import com.rebekahperkins.website.dao.PoemDao;
 import com.rebekahperkins.website.domain.Poem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +25,11 @@ public class PoemServiceImpl implements PoemService {
   @Override
   public void delete(Poem poem) {
     poemDao.delete(poem);
+  }
+
+  @Override
+  public Page<Poem> findAll(Pageable pageable) {
+    Page<Poem> poems = poemDao.findAll(pageable);
+    return poems;
   }
 }
