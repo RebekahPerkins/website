@@ -1,0 +1,7 @@
+.mark_favorite {
+  background: url(icons/favorite.png) no-repeat 0 0;
+}
+
+.unmark_favorite {
+  background: url(icons/unfavorite.png) no-repeat 0 0;
+}

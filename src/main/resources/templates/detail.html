@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/app.css}"/>
-</head>
+<head th:replace="layout :: head(${poem.name})"></head>
 <body>
 <form th:action="@{|/cats/${poem.id}/favorite|}" method="post">
     <button type="submit" th:class="(${poem.favorite}? 'un' : '') + 'mark_favorite'"></button>

@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="head(page_title)">
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta description="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" th:href="@{/favicon.png}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/cats.css}"/>
+
+    <title th:text="'cats | ' + ${page_title}">cats</title>
 </head>
 <body>
 <div th:fragment="pagecats">
