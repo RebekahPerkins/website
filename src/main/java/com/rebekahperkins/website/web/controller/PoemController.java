@@ -56,16 +56,6 @@ public class PoemController {
     return "detail";
   }
 
-  @RequestMapping("/search")
-  public String search(@RequestParam String q) {
-    return String.format("redirect:/search/%s", q);
-  }
-
-  @RequestMapping("/search/{q}")
-  public String getForSearchTerm(@PathVariable String q, Model model) {
-    return "cats";
-  }
-
   @RequestMapping(path = "/add", method = RequestMethod.GET)
   public String add(Model model) {
     model.addAttribute("poem", new Poem());
