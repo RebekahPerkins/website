@@ -20,4 +20,6 @@ public interface PoemService {
   boolean isFavorite(Long poemId, Long userId);
 
   Page<Poem> findBySubmittedBy(User user, Pageable pageable);
+
+  Page<Poem> findFavorites(User user, Pageable pageable);
 }

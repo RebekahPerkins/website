@@ -47,6 +47,15 @@ public class PoemController {
     return "my_cats";
   }
 
+  @RequestMapping("/my_favorites")
+  public String getMyFavoriteCats(Model model, Pageable pageable, Principal principal) {
+    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    Page<Poem> page = poemService.findFavorites(loggedInUser, pageable);
+    model.addAttribute("page", page);
+    model.addAttribute("referrer", "/my_favorites");
+    return "my_favorites";
+  }
+
   @RequestMapping("cats/{id}")
   public String detail(@PathVariable Long id, Model model, Principal principal) {
     User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();

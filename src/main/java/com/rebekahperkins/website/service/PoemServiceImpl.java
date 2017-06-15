@@ -8,8 +8,13 @@ import com.rebekahperkins.website.domain.Poem;
 import com.rebekahperkins.website.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PoemServiceImpl implements PoemService {
@@ -63,5 +68,18 @@ public class PoemServiceImpl implements PoemService {
   public Page<Poem> findBySubmittedBy(User user, Pageable pageable) {
     Page<Poem> poems = poemDao.findBySubmittedBy(user, pageable);
     return poems;
+  }
+
+  @Override
+  public Page<Poem> findFavorites(User user, Pageable pageable) {
+    List<Favorite> favorites = favoriteDao.findByUser(user);
+
+    List<Poem> poems = favorites.stream()
+        .map(favorite -> favorite.getPoem())
+        .collect(Collectors.toList());
+
+    Page<Poem> page = new PageImpl<Poem>(poems, pageable, poems.size());
+
+    return page;
   }
 }
