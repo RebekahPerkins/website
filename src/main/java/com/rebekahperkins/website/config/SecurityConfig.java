@@ -41,14 +41,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .authorizeRequests()
-        .antMatchers("/register", "/resume", "/", "/error", "/access_denied", "/login").permitAll()
+        .antMatchers("/register", "/resume", "/", "/error", "/access_denied", "/login", "/logout").permitAll()
         .anyRequest().authenticated()
         .and().formLogin()
         .loginPage("/login")
         .successHandler(loginSuccessHandler())
         .failureHandler(loginFailureHandler())
-        .and().logout()
-        .logoutSuccessUrl("/login")
         .and().csrf();
   }
 
