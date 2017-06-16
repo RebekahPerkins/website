@@ -33,47 +33,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/assets/**");
-    }
+  public void configure(WebSecurity web) throws Exception {
+    web.ignoring().antMatchers("/assets/**");
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-      http
-          .formLogin()
-          .loginPage("/login")
-          .successHandler(loginSuccessHandler())
-          .failureHandler(loginFailureHandler())
-          .and().logout()
-          .logoutSuccessUrl("/login")
-          .and().csrf();
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+        .formLogin()
+        .loginPage("/login")
+        .successHandler(loginSuccessHandler())
+        .failureHandler(loginFailureHandler())
+        .and().logout()
+        .logoutSuccessUrl("/login")
+        .and().csrf();
+  }
 
-    public AuthenticationSuccessHandler loginSuccessHandler() {
-        return (request, response, authentication) -> response.sendRedirect("/cats");
-    }
+  public AuthenticationSuccessHandler loginSuccessHandler() {
+    return (request, response, authentication) -> response.sendRedirect("/cats");
+  }
 
-    public AuthenticationFailureHandler loginFailureHandler() {
-        return (request, response, exception) -> {
-            //request.getSession().setAttribute("flash", new FlashMessage("Incorrect username and/or password. Please try again.", FlashMessage.Status.FAILURE));
-            response.sendRedirect("/login");
+  public AuthenticationFailureHandler loginFailureHandler() {
+    return (request, response, exception) -> {
+      //request.getSession().setAttribute("flash", new FlashMessage("Incorrect username and/or password. Please try again.", FlashMessage.Status.FAILURE));
+      response.sendRedirect("/login");
+    };
+  }
+
+  @Bean
+  public EvaluationContextExtension securityExtension() {
+    return new EvaluationContextExtensionSupport() {
+      @Override
+      public String getExtensionId() {
+        return "sec";
+      }
+
+      @Override
+      public Object getRootObject() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return new SecurityExpressionRoot(authentication) {
         };
-    }
-
-    @Bean
-    public EvaluationContextExtension securityExtension() {
-        return new EvaluationContextExtensionSupport() {
-            @Override
-            public String getExtensionId() {
-                return "sec";
-            }
-
-            @Override
-            public Object getRootObject() {
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                return new SecurityExpressionRoot(authentication) {
-                };
-            }
-        };
-    }
+      }
+    };
+  }
 }
