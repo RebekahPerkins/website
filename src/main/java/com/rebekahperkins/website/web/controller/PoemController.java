@@ -74,7 +74,9 @@ public class PoemController {
   @RequestMapping(path = "/add", method = RequestMethod.GET)
   public String add(Model model) {
     model.addAttribute("header", "Contribute");
-    model.addAttribute("poem", new Poem());
+    if (!model.containsAttribute("poem")) {
+      model.addAttribute("poem", new Poem());
+    }
     return "edit";
   }
 
@@ -86,12 +88,14 @@ public class PoemController {
       return "redirect:/cats/" + id;
     }
     model.addAttribute("header", "Edit");
-    model.addAttribute("poem", poem);
+    if (!model.containsAttribute("poem")) {
+      model.addAttribute("poem", poem);
+    }
     return "edit";
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"submit"})
-  public String edit (@Valid Poem poem, Model model, Principal principal, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+  public String edit (@Valid Poem poem, Principal principal, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.poem", bindingResult);
@@ -106,15 +110,20 @@ public class PoemController {
       poem.setSubmittedBy(loggedInUser);
       poem = poemService.addOrUpdate(poem);
       redirectAttributes.addFlashAttribute("flash", new FlashMessage("Successfully added", FlashMessage.Status.SUCCESS));
-    } else if (poem.getSubmittedBy().getId() == loggedInUser.getId()){
-      poemService.addOrUpdate(poem);
-      redirectAttributes.addFlashAttribute("flash", new FlashMessage("Successfully edited", FlashMessage.Status.SUCCESS));
+    } else {
+      Poem poemFromDb = poemService.get(poem.getId());
+      if (poemFromDb.getSubmittedBy().getId() == loggedInUser.getId()) {
+        poem.setSubmittedBy(loggedInUser);
+        poemService.addOrUpdate(poem);
+        redirectAttributes.addFlashAttribute("flash",
+            new FlashMessage("Successfully edited", FlashMessage.Status.SUCCESS));
+      }
     }
     return "redirect:/cats/" + poem.getId();
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"delete"})
-  public String delete (Poem poem, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+  public String delete (Poem poem, Principal principal, RedirectAttributes redirectAttributes) {
     User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     if (poem.getSubmittedBy().getId() == loggedInUser.getId()) {
       poemService.delete(poem);

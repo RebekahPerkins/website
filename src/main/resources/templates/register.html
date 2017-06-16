@@ -20,13 +20,13 @@
                 <br/>
                 <br/>
                 <form th:action="@{/register}" th:object="${user}" method="post">
-                    <div th:classappend="${#fields.hasErrors('username')} ? 'error' : ''">
-                        <div class="error-message" th:if="${#fields.hasErrors(username)}" th:errors="*{username}"></div>
+                    <div th:classappend="${#fields.hasErrors('username')}? 'error' : ''">
+                        <div class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         <input th:field="*{username}" type="text" placeholder="username"/>
                     </div>
                     <br/>
                     <div th:classappend="${#fields.hasErrors('password')} ? 'error' : ''">
-                        <div class="error-message" th:if="${#fields.hasErrors(password)}" th:errors="*{password}"></div>
+                        <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         <input th:field="*{password}" type="password" placeholder="password"/>
                     </div>
                     <br/>

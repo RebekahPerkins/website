@@ -21,13 +21,14 @@ public class RegistrationController {
 
   @RequestMapping(path = "/register", method = RequestMethod.GET)
   public String getRegistration(Model model) {
-    //TODO check for redirectattributes
-    model.addAttribute("user", new User());
+    if (!model.containsAttribute("user")){
+      model.addAttribute("user", new User());
+    }
     return "register";
   }
 
   @RequestMapping(path = "/register", method = RequestMethod.POST)
-  public String register(@Valid User user, Model model, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+  public String register(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", bindingResult);
       redirectAttributes.addFlashAttribute("user", user);
