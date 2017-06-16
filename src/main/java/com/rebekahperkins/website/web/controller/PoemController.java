@@ -62,6 +62,8 @@ public class PoemController {
     Poem poem = poemService.get(id);
     poem.setFavorite(poemService.isFavorite(id, loggedInUser.getId()));
     model.addAttribute("poem", poem);
+    boolean canEdit = poem.getSubmittedBy().getId() == loggedInUser.getId();
+    model.addAttribute("canedit", canEdit);
     return "detail";
   }
 
@@ -73,8 +75,12 @@ public class PoemController {
   }
 
   @RequestMapping(path = "/cats/{id}/edit", method = RequestMethod.GET)
-  public String edit(@PathVariable Long id, Model model) {
+  public String edit(@PathVariable Long id, Model model, Principal principal) {
+    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     Poem poem = poemService.get(id);
+    if (poem.getSubmittedBy().getId() != loggedInUser.getId()){
+      return "redirect:/cats/" + id;
+    }
     model.addAttribute("header", "Edit");
     model.addAttribute("poem", poem);
     return "edit";
