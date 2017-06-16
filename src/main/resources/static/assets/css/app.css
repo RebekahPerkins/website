@@ -112,3 +112,7 @@ a:hover {
   display: block;
   width: 50%;
 }
+
+.error {
+  font-color: white;
+}
