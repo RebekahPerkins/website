@@ -38,18 +38,13 @@ public class User implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
     public User() {
-        this.id = null;
-        this.username = null;
-        this.password = null;
-        this.enabled = true;
-        this.role = null;
     }
 
     public User(String username, String password) {
