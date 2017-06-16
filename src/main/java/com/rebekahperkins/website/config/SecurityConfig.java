@@ -36,11 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity web) throws Exception {
     web.ignoring().antMatchers("/assets/**");
   }
-
+  
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .formLogin()
+        .authorizeRequests()
+        .antMatchers("/register", "/resume", "/", "/error", "/access_denied", "/login").permitAll()
+        .anyRequest().authenticated()
+        .and().formLogin()
         .loginPage("/login")
         .successHandler(loginSuccessHandler())
         .failureHandler(loginFailureHandler())
