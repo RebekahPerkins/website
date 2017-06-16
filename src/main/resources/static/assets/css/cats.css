@@ -82,14 +82,6 @@ nav ul li.active, nav ul li:hover {
     color: #757378;
 }
 
-.cats.container .col:nth-child(3n+1) {
-    padding-left: 0;
-}
-
-.cats.container .col:nth-child(3n+3) {
-    padding-right: 0;
-}
-
 .cats img {
     height: 220px;
     width: 100%;
@@ -115,10 +107,6 @@ nav ul li.active, nav ul li:hover {
     width: 60px;
     z-index: 100;
     border-radius: 0 6px 0 0;
-}
-
-.col:nth-child(3n) .favorite {
-    right: 0;
 }
 
 .cat-detail .favorite {
@@ -790,9 +778,6 @@ label.button {
         margin-right: 12px;
     }
 
-    .col:nth-child(3n) .favorite {
-        right: 0.75rem;
-    }
 }
 
 .pagination li.active a{
