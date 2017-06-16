@@ -1,14 +1,16 @@
 package com.rebekahperkins.website.domain;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Poem {
@@ -16,8 +18,14 @@ public class Poem {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @NotNull
+  @Size(min=1, max=255)
   private String name;
+  @Column(length = 3000)
+  @NotNull
+  @Size(min=1, max=3000)
   private String content;
+  @Size(max=255)
   private String source;
   @ManyToOne
   @JoinColumn(name = "user_id")
