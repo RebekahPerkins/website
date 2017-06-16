@@ -15,4 +15,6 @@ public interface FavoriteDao extends CrudRepository<Favorite, Long> {
   Favorite getByPoemIdAndUserId(Long poemId, Long userId);
 
   List<Favorite> findByUser(User user);
+
+  List<Favorite> findByPoem(Poem poem);
 }

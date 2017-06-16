@@ -67,6 +67,7 @@ public class PoemController {
 
   @RequestMapping(path = "/add", method = RequestMethod.GET)
   public String add(Model model) {
+    model.addAttribute("header", "Contribute");
     model.addAttribute("poem", new Poem());
     return "edit";
   }
@@ -74,11 +75,12 @@ public class PoemController {
   @RequestMapping(path = "/cats/{id}/edit", method = RequestMethod.GET)
   public String edit(@PathVariable Long id, Model model) {
     Poem poem = poemService.get(id);
+    model.addAttribute("header", "Edit");
     model.addAttribute("poem", poem);
     return "edit";
   }
 
-  @RequestMapping(path = "/addoredit", method = RequestMethod.POST)
+  @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"submit"})
   public String edit (Poem poem, Model model, Principal principal) {
     User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     poem.setSubmittedBy(loggedInUser);
@@ -86,7 +88,7 @@ public class PoemController {
     return "redirect:/cats/" + poem.getId();
   }
 
-  @RequestMapping(path = "/delete", method = RequestMethod.DELETE)
+  @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"delete"})
   public String delete (Poem poem, Model model) {
     poemService.delete(poem);
     return "redirect:/cats";

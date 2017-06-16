@@ -2,15 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head(${poem.name})"></head>
 <body>
-<form th:action="@{|/cats/${poem.id}/favorite|}" method="post">
-    <button type="submit" th:class="(${poem.favorite}? 'un' : '') + 'mark_favorite'"></button>
-</form>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: flash"></div>
 
-<span th:text="${poem.name}">Poem name</span>
-<span th:text="${poem.content}">Contents should be here</span>
-<span th:text="${poem.source}">Source</span>
-<span th:text="${poem.submittedBy.username}">Submitted by here</span>
+<div class="cat-detail container upload">
+    <div class="row">
+        <br/>
+        <div class="col s12 l8 center-align actions">
+            <form th:action="@{|/cats/${poem.id}/favorite|}" method="post">
+                <button type="submit" th:class="(${poem.favorite}? 'un' : '') + 'mark favorite'"></button>
+                <h3 th:text="${poem.name}">Poem name</h3>
+            </form>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <span class="col s12 l8 center-align" th:text="${poem.content}">Contents should be here</span>
+        <br/>
+        <br/>
+    </div>
+    <div class="row">
+            <h5 class="col s12 l4 left-align" th:text="'Source: ' + ${poem.source}">Source</h5>
+            <h5 class="col s12 l4 right-align" th:text="'Submitted by: ' + ${poem.submittedBy.username}">Submitted by here</h5>
+    </div>
+    <div class="row">
+        <div class="col s12 l8">
+            <div class="divider"></div>
+        </div>
+    </div>
 
-<a th:href="@{|/cats/${poem.id}/edit|}" >Edit</a>
+    <div class="row">
+        <div class="col s12 l8">
+            <a th:href="@{|/cats/${poem.id}/edit|}" class="button">Edit</a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout :: scripts"></div>
 </body>
 </html>

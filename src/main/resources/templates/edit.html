@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head(edit ${poem.name})"></head>
+<head th:replace="layout :: head('contribute')"></head>
 <body>
-<div>
-    <form th:action="@{/addoredit}" th:object="${poem}" method="post">
-        <input th:field="*{name}" placeholder="Name"/>
-        <input th:field="*{content}"/>
-        <input th:field="*{source}" placeholder="Source"/>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: flash"></div>
+<div class="container upload">
+    <div class="row">
+        <div class="col s12">
+            <h2 th:text="${header}"></h2>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <form th:action="@{/edit}" th:object="${poem}" method="post">
+        <div class="row">
+            <div class="col s12 l8">
+                <input type="text" th:field="*{name}" placeholder="Name"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 l8">
+                <textarea id="textarea1" class="materialize-textarea" th:field="*{content}"></textarea>
+                <label for="textarea1">Poem</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 l8">
+                <input type="text" th:field="*{source}" placeholder="Source"/>
+            </div>
+        </div>
         <input type="hidden" th:field="*{id}"/>
-        <button type="submit" >Submit</button>
+        <div class="row">
+            <div class="col s12">
+                <button type="submit" name="submit" class="button">Submit</button>
+                <button type="submit" name="delete" class="button">Delete</button>
+            </div>
+        </div>
     </form>
-    <form action="@{/delete}" th:object="${poem}" method="delete"></form>
 </div>
+<div th:replace="layout :: scripts"></div>
 </body>
 </html>

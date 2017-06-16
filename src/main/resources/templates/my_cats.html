@@ -2,9 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head('mine')"></head>
 <body>
-<div>
-    My cats
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: flash"></div>
+
+<div class="cats container">
+    <div class="row">
+        <div class="col s12">
+            <h2 >My poems</h2>
+        </div>
+    </div>
+
     <div th:replace="layout :: pagecats"></div>
+
 </div>
+
+<div th:replace="layout :: scripts"></div>
 </body>
 </html>

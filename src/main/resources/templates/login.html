@@ -2,13 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head('login')"></head>
 <body>
-    <div><a th:href="@{/register}">Register</a></div>
-    <div>
-        <form th:action="@{/login}" th:object="${user}" method="post">
-            <input th:field="*{username}" placeholder="username"/>
-            <input th:field="*{password}" type="password" placeholder="password"/>
-            <button type="submit">Sign in</button>
-        </form>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">cat poems</a>
+        </div>
+    </nav>
+</div>
+
+<div th:replace="layout :: flash"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 l8">
+            <div>
+                <br/>
+                <br/>
+                <form th:action="@{/login}" th:object="${user}" method="post">
+                    <input th:field="*{username}" type="text" placeholder="username"/>
+                    <br/>
+                    <input th:field="*{password}" type="password" placeholder="password"/>
+                    <br/>
+                    <button type="submit" class="button">Sign in</button>
+                </form>
+            </div>
+            <div><a th:href="@{/register}">New? Register here</a></div>
+        </div>
     </div>
+</div>
+
+<div th:replace="layout :: scripts"></div>
 </body>
 </html>

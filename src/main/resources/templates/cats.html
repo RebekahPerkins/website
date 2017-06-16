@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head('latest')"></head>
+<head th:replace="layout :: head('browse')"></head>
 <body>
-Here is the cats page
-<div><a th:href="@{/add}">Add a poem</a></div>
-<div><a th:href="@{/my_cats}">My poems</a></div>
-<div><a th:href="@{/my_favorites}">My favorites</a></div>
-Latest poems
-<div th:replace="layout :: pagecats"></div>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: flash"></div>
 
+<div class="cats container">
+    <div class="row">
+        <div class="col s12">
+            <h2 >Browse</h2>
+         </div>
+    </div>
+
+    <div th:replace="layout :: pagecats"></div>
+
+</div>
+
+<div th:replace="layout :: scripts"></div>
 </body>
 </html>

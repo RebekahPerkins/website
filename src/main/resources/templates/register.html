@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head(${poem.register})"></head>
+<head th:replace="layout :: head(register)"></head>
 <body>
-<div>
-    <form th:action="@{/register}" th:object="${user}" method="post">
-        <input th:field="*{firstName}" placeholder="First Name"/>
-        <input th:field="*{lastName}" placeholder="Last Name"/>
-        <input th:field="*{username}" placeholder="Username"/>
-        <input th:field="*{password}" type="password" placeholder="Password"/>
-        <button type="submit">Register</button>
-    </form>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">cat poems</a>
+        </div>
+    </nav>
 </div>
+
+<div th:replace="layout :: flash"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 l8">
+            <div>
+                <br/>
+                <br/>
+                <form th:action="@{/register}" th:object="${user}" method="post">
+                    <input th:field="*{username}" type="text" placeholder="username"/>
+                    <br/>
+                    <input th:field="*{password}" type="password" placeholder="password"/>
+                    <br/>
+                    <button type="submit" class="button">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout :: scripts"></div>
 </body>
 </html>

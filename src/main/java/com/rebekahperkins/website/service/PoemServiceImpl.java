@@ -39,6 +39,10 @@ public class PoemServiceImpl implements PoemService {
 
   @Override
   public void delete(Poem poem) {
+    List<Favorite> favorites = favoriteDao.findByPoem(poem);
+    for (Favorite favorite : favorites){
+      favoriteDao.delete(favorite);
+    }
     poemDao.delete(poem);
   }
 

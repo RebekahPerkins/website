@@ -4,44 +4,84 @@
     <meta charset="UTF-8"/>
     <meta description="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="icon" th:href="@{/favicon.png}" />
+    <link rel="icon" th:href="@{/assets/css/favicon2.png}" />
+    <link rel="stylesheet" th:href="@{/assets/css/vendor/materialize/css/materialize.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/vendor/codrops/css/cs-select.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/vendor/codrops/css/cs-skin-border.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/cats.css}"/>
 
     <title th:text="'cats | ' + ${page_title}">cats</title>
 </head>
 <body>
+
+<div th:fragment="nav" class="navbar-fixed">
+    <nav>
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">cat poems</a>
+            <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/cats') ? 'active' : ''}"><a th:href="@{/cats}">Browse</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/my_favorites') ? 'active' : ''}"><a th:href="@{/my_favorites}">Favorites</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/add') ? 'active' : ''}"><a th:href="@{/add}">Contribute</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/my_cats') ? 'active' : ''}"><a th:href="@{/my_cats}">Mine</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/logout') ? 'active' : ''}"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+            <ul id="mobile-nav" class="side-nav">
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/cats') ? 'active' : ''}"><a th:href="@{/cats}">Browse</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/my_favorites') ? 'active' : ''}"><a th:href="@{/my_favorites}">Favorites</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/add') ? 'active' : ''}"><a th:href="@{/add}">Contribute</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/my_cats') ? 'active' : ''}"><a th:href="@{/my_cats}">Mine</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/logout') ? 'active' : ''}"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="flash" th:if="${flash != null}" class="container">
+    <i class="right material-icons" data-close="">close</i>
+    <div th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" class="flash"></div>
+</div>
+
 <div th:fragment="pagecats">
-    <ul>
-        <li th:each="poem : ${page.content}">
-            <a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a>
+    <div class="row">
+        <div th:each="poem : ${page.content}" class="col s12 m6 l6" >
+            <h5><a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a></h5>
             <br/>
-            <span th:text="${poem.content}">Content</span>
+            <h6><span th:text="${poem.content}">Content</span></h6>
             <br/>
-        </li>
-    </ul>
+            <div class="divider"></div>
+        </div>
+    </div>
 
     <div>
-        <ul>
-            <li th:class="${page.number eq 0} ? 'disabled' : ''">
-                <a th:if="${not page.first}" th:href="@{${referrer}(page=${page.number-1},size=${page.size})}">Previous</a>
-                <a th:if="${page.first}" href="javascript:void(0);">Previous</a>
+        <ul class="pagination">
+            <li th:class="${page.number eq 0} ? 'disabled' : 'waves-effect'">
+                <a th:if="${not page.first}" th:href="@{${referrer}(page=${page.number-1},size=${page.size})}"><i class="material-icons">chevron_left</i></a>
+                <a th:if="${page.first}" href="javascript:void(0);"><i class="material-icons">chevron_left</i></a>
             </li>
 
-            <li th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}" th:class="${page.number eq pageNo}? 'active' : ''">
-                <a th:if="${page.number  eq pageNo}" href="javascript:void(0);">
-                    <span th:text="${pageNo + 1}"></span>
+            <li th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}" th:class="${page.number eq pageNo}? 'active' : 'waves-effect'">
+                <a th:if="${page.number  eq pageNo}" href="javascript:void(0);" th:text=" ${pageNo + 1} ">
                 </a>
-                <a th:if="${not (page.number  eq pageNo)}" th:href="@{${referrer}(page=${pageNo},size=${page.size})}">
-                    <span th:text="${pageNo + 1}"></span>
+                <a th:if="${not (page.number  eq pageNo)}" th:href="@{${referrer}(page=${pageNo},size=${page.size})}" th:text=" ${pageNo + 1} ">
                 </a>
 
             </li>
-            <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
-                <a th:if="${not page.last}" th:href="@{${referrer}(page=${page.number+1},size=${page.size})}">Next</a>
-                <a th:if="${page.last}" href="javascript:void(0);">Next</a>
+            <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : 'waves-effect'">
+                <a th:if="${not page.last}" th:href="@{${referrer}(page=${page.number+1},size=${page.size})}"><i class="material-icons">chevron_right</i></a>
+                <a th:if="${page.last}" href="javascript:void(0);"><i class="material-icons">chevron_right</i></a>
             </li>
         </ul>
     </div>
+</div>
+
+<div th:fragment="scripts">
+    <script th:src="@{/assets/css/vendor/jquery/jquery-1.11.3.js}"></script>
+    <script th:src="@{/assets/css/vendor/materialize/js/materialize.js}"></script>
+    <script th:src="@{/assets/css/vendor/codrops/js/classie.js}"></script>
+    <script th:src="@{/assets/css/vendor/codrops/js/selectFx.js}"></script>
+    <script th:src="@{/assets/js/app.js}"></script>
 </div>
 
 </body>
