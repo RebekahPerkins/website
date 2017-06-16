@@ -1,5 +1,6 @@
 package com.rebekahperkins.website.domain;
 
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Poem {
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User submittedBy;
+  private LocalDateTime dateUploaded = LocalDateTime.now();
   @Transient
   private boolean favorite;
 
@@ -62,6 +64,14 @@ public class Poem {
 
   public void setSource(String source) {
     this.source = source;
+  }
+
+  public LocalDateTime getDateUploaded() {
+    return dateUploaded;
+  }
+
+  public void setDateUploaded(LocalDateTime dateUploaded) {
+    this.dateUploaded = dateUploaded;
   }
 
   public boolean isFavorite() {

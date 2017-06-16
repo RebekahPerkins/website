@@ -48,7 +48,7 @@ public class PoemServiceImpl implements PoemService {
 
   @Override
   public Page<Poem> findAll(Pageable pageable) {
-    Page<Poem> poems = poemDao.findAll(pageable);
+    Page<Poem> poems = poemDao.findAllByOrderByDateUploadedDesc(pageable);
     return poems;
   }
 
