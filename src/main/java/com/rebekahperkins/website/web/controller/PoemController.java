@@ -14,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -125,10 +124,11 @@ public class PoemController {
   @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"delete"})
   public String delete (Poem poem, Principal principal, RedirectAttributes redirectAttributes) {
     User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
-    if (poem.getSubmittedBy().getId() == loggedInUser.getId()) {
-      poemService.delete(poem);
+    Poem poemFromDb = poemService.get(poem.getId());
+    if (poemFromDb.getSubmittedBy().getId() == loggedInUser.getId()) {
+      poemService.delete(poemFromDb);
+      redirectAttributes.addFlashAttribute("flash", new FlashMessage("Successfully deleted", FlashMessage.Status.SUCCESS));
     }
-    redirectAttributes.addFlashAttribute("flash", new FlashMessage("Successfully deleted", FlashMessage.Status.SUCCESS));
     return "redirect:/cats";
   }
 }
