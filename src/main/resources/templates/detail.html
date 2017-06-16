@@ -10,7 +10,7 @@
         <br/>
         <div class="col s12 l8 center-align actions">
             <form th:action="@{|/cats/${poem.id}/favorite|}" method="post">
-                <button type="submit" th:class="(${poem.favorite}? 'un' : '') + 'mark favorite'"></button>
+                <button type="submit" th:class="(${poem.favorite}? '' : 'un') + 'mark favorite'"></button>
                 <h3 th:text="${poem.name}">Poem name</h3>
             </form>
         </div>
