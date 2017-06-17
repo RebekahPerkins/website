@@ -94,7 +94,7 @@ public class PoemController {
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"submit"})
-  public String edit (@Valid Poem poem, Principal principal, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+  public String edit (@Valid Poem poem, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) {
 
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.poem", bindingResult);
