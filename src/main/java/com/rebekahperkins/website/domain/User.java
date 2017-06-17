@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -32,9 +31,8 @@ public class User implements UserDetails {
     @Size(min = 3, max = 30)
     private String username;
 
-    @Column(length = 100)
+    @Column(length = 30)
     @Size(min = 6, max = 30)
-    @Pattern(regexp = "(?=.*\\d)(?=.*[a-zA-Z]).{6,}", message="At least one number and one letter and 6 characters")
     private String password;
 
     @Column(nullable = false)
