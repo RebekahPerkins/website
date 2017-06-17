@@ -32,7 +32,6 @@ public class User implements UserDetails {
     private String username;
 
     @Column(length = 30)
-    @Size(min = 6, max = 30)
     private String password;
 
     @Column(nullable = false)
