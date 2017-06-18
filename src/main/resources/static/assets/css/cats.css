@@ -274,8 +274,8 @@ nav ul li.active, nav ul li:hover {
 }
 
 .flash.success {
-    background-color: #0b69a7;
-    color: #f3f6ee;
+    background-color: #d6c5ec;
+    color: #886ab2;
 }
 
 .flash.failure {
