@@ -459,11 +459,6 @@ input[type=text], input[type=textarea], input[type=password] {
     color: #7a7580;
 }
 
-input[type=text]:focus:not([readonly]) {
-    border-bottom-color: #dad7de;
-    box-shadow: none;
-}
-
 .button {
     margin-right: 1rem;
     display: inline-block;
