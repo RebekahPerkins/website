@@ -31,6 +31,7 @@ public class PoemServiceImpl implements PoemService {
   private UserDao userDao;
 
   public static final int MAX_LINES = 4;
+  public static final int MAX_LINE_LENGTH = 33;
   public static final int CAT_IMAGES = 7;
 
   @Override
@@ -61,12 +62,18 @@ public class PoemServiceImpl implements PoemService {
 
   private void abbreviatePoem(Page<Poem> page) {
     for (Poem poem : page.getContent()) {
-      String lines[] = poem.getContent().split("\\r?\\n");
+      String[] lines = poem.getContent().split("\\r?\\n");
+      for (int i=0; i < lines.length; i++){
+        int lineLength = lines[i].length();
+        if (lineLength > MAX_LINE_LENGTH){
+          lines[i] = lines[i].substring(0, MAX_LINE_LENGTH - 3) + "...";
+        }
+      }
       if (lines.length > MAX_LINES){
         poem.setAbbr(true);
-        String[] abbr = Arrays.copyOfRange(lines, 0, 4);
-        poem.setContent(String.join("\r\n", abbr));
+        lines = Arrays.copyOfRange(lines, 0, MAX_LINES);
       }
+      poem.setContent(String.join("\r\n", lines));
     }
   }
 
