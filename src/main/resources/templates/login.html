@@ -3,7 +3,7 @@
 <head th:replace="layout :: head('login')"></head>
 <body>
 
-<div class="navbar-fixed">
+<div class="navbar-fixed z-depth-2">
     <nav>
         <div class="container">
             <a th:href="@{/cats}" class="brand-logo">cat poems</a>
@@ -23,7 +23,7 @@
                     <br/>
                     <input th:field="*{password}" type="password" placeholder="password"/>
                     <br/>
-                    <button type="submit" class="button">Sign in</button>
+                    <button type="submit" class="button z-depth-1 waves-effect">Sign in</button>
                 </form>
             </div>
             <div><a th:href="@{/register}">New? Register here</a></div>

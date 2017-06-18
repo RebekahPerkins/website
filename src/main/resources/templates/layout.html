@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div th:fragment="nav" class="navbar-fixed z-depth-2">
+<div th:fragment="nav" class="navbar-fixed z-depth-3">
     <ul id="dropdown1" class="dropdown-content">
         <li th:classappend="${#httpServletRequest.servletPath.equals('/my_cats') ? 'active' : ''}"><a th:href="@{/my_cats}">Mine</a></li>
         <li th:classappend="${#httpServletRequest.servletPath.equals('/my_favorites') ? 'active' : ''}"><a th:href="@{/my_favorites}">My favorites</a></li>
@@ -57,7 +57,7 @@
                     <div class="card-action">
                         <a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content truncate">
                         <p th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">Content</p>
                         <a th:if="${poem.abbr}" th:href="@{|cats/${poem.id}|}">...</a>
                     </div>

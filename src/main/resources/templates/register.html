@@ -3,7 +3,7 @@
 <head th:replace="layout :: head(register)"></head>
 <body>
 
-<div class="navbar-fixed">
+<div class="navbar-fixed z-depth-2">
     <nav>
         <div class="container">
             <a th:href="@{/cats}" class="brand-logo">cat poems</a>
@@ -30,8 +30,8 @@
                         <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     </div>
                     <br/>
-                    <button type="submit" class="button">Register</button>
-                    <a th:href="@{/login}" class="button">Cancel</a>
+                    <button type="submit" class="button z-depth-1 waves-effect">Register</button>
+                    <a th:href="@{/login}" class="button z-depth-1 waves-effect">Cancel</a>
                 </form>
             </div>
         </div>
