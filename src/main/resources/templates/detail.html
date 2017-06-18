@@ -17,7 +17,9 @@
         <br/>
         <br/>
         <br/>
-        <span class="col s12 l8 center-align" th:text="${poem.content}">Contents should be here</span>
+        <p class="col s12 l8 center-align" th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >
+            Contents should be here
+        </p>
         <br/>
         <br/>
     </div>
