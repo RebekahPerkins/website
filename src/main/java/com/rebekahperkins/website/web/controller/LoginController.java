@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,13 +19,10 @@ public class LoginController {
   @RequestMapping(path = "/login", method = RequestMethod.GET)
   public String getLoginPage(Model model, HttpServletRequest request) {
     model.addAttribute("user", new User());
-    try {
-      //Object flash = request.getSession().getAttribute("flash");
-      //model.addAttribute("flash", flash);
-
-      //request.getSession().removeAttribute("flash");
-    } catch (Exception ex) {
-      // "flash" session attribute must not exist...do nothing and proceed normally
+    Object flash = request.getSession().getAttribute("flash");
+    if (!StringUtils.isEmpty(flash)) {
+      model.addAttribute("flash", flash);
+      request.getSession().removeAttribute("flash");
     }
     return "login";
   }
