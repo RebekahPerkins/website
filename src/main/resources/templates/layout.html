@@ -28,7 +28,7 @@
             <ul class="right hide-on-med-and-down">
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/cats') ? 'active' : ''}"><a th:href="@{/cats}">Browse</a></li>
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/add') ? 'active' : ''}"><a th:href="@{/add}">Contribute</a></li>
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Username<i id="dropdown-arrow" class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><span th:text="${principal.name}"></span><i id="dropdown-arrow" class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
             <ul id="mobile-nav" class="side-nav">
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/cats') ? 'active' : ''}"><a th:href="@{/cats}">Browse</a></li>

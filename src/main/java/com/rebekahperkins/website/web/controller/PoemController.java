@@ -26,10 +26,11 @@ public class PoemController {
   private PoemService poemService;
 
   @RequestMapping("/cats")
-  public String getLangingPage(Model model, Pageable pageable) {
+  public String getLangingPage(Model model, Pageable pageable, Principal principal) {
     Page<Poem> page = poemService.findAll(pageable);
     model.addAttribute("page", page);
     model.addAttribute("referrer", "/cats");
+    model.addAttribute("principal", principal);
     return "cats";
   }
 
@@ -47,6 +48,7 @@ public class PoemController {
     Page<Poem> page = poemService.findBySubmittedBy(loggedInUser, pageable);
     model.addAttribute("page", page);
     model.addAttribute("referrer", "/my_cats");
+    model.addAttribute("principal", principal);
     return "my_cats";
   }
 
@@ -56,6 +58,7 @@ public class PoemController {
     Page<Poem> page = poemService.findFavorites(loggedInUser, pageable);
     model.addAttribute("page", page);
     model.addAttribute("referrer", "/my_favorites");
+    model.addAttribute("principal", principal);
     return "my_favorites";
   }
 
@@ -67,12 +70,14 @@ public class PoemController {
     model.addAttribute("poem", poem);
     boolean canEdit = poem.getSubmittedBy().getId() == loggedInUser.getId();
     model.addAttribute("canedit", canEdit);
+    model.addAttribute("principal", principal);
     return "detail";
   }
 
   @RequestMapping(path = "/add", method = RequestMethod.GET)
-  public String add(Model model) {
+  public String add(Model model, Principal principal) {
     model.addAttribute("header", "Contribute");
+    model.addAttribute("principal", principal);
     if (!model.containsAttribute("poem")) {
       model.addAttribute("poem", new Poem());
     }
@@ -86,6 +91,7 @@ public class PoemController {
     if (poem.getSubmittedBy().getId() != loggedInUser.getId()){
       return "redirect:/cats/" + id;
     }
+    model.addAttribute("principal", principal);
     model.addAttribute("header", "Edit");
     if (!model.containsAttribute("poem")) {
       model.addAttribute("poem", poem);
