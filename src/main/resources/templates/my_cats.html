@@ -15,7 +15,7 @@
     <div th:replace="layout :: pagecats"></div>
     <div th:if="${page.totalPages eq 0}">
         <h5>None yet</h5>
-        <a href="@{/add}">Contribute</a>
+        <a th:href="@{/add}">Contribute</a>
     </div>
 
 
