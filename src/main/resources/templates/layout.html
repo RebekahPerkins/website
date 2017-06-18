@@ -49,11 +49,19 @@
 <div th:fragment="pagecats">
     <div class="row">
         <div th:each="poem : ${page.content}" class="col s12 m6 l6" >
-            <h5><a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a></h5>
-            <br/>
-            <h6><span th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">Content</span></h6>
-            <br/>
-            <div class="divider"></div>
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="http://lorempixel.com/100/190/nature/6" />
+                </div>
+                <div class="card-stacked">
+                    <div class="card-action">
+                        <a th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a>
+                    </div>
+                    <div class="card-content">
+                        <p th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">Content</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
