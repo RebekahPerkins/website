@@ -73,7 +73,7 @@ public class PoemServiceImpl implements PoemService {
   private void includeImage(Page<Poem> page) {
     Random rand = new Random();
     for (Poem poem : page.getContent()) {
-      int value = rand.nextInt(CAT_IMAGES + 1);
+      int value = rand.nextInt(CAT_IMAGES) + 1;
       poem.setImage(value);
     }
   }
