@@ -35,6 +35,8 @@ public class Poem {
   private boolean favorite;
   @Transient
   private boolean abbr;
+  @Transient
+  private int image;
 
   public User getSubmittedBy() {
     return submittedBy;
@@ -98,5 +100,13 @@ public class Poem {
 
   public void setAbbr(boolean abbr) {
     this.abbr = abbr;
+  }
+
+  public int getImage() {
+    return image;
+  }
+
+  public void setImage(int image) {
+    this.image = image;
   }
 }

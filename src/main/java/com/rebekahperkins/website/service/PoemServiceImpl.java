@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,6 +31,7 @@ public class PoemServiceImpl implements PoemService {
   private UserDao userDao;
 
   public static final int MAX_LINES = 4;
+  public static final int CAT_IMAGES = 7;
 
   @Override
   public Poem addOrUpdate(Poem poem) { return poemDao.save(poem);
@@ -53,6 +55,7 @@ public class PoemServiceImpl implements PoemService {
   public Page<Poem> findAll(Pageable pageable) {
     Page<Poem> page = poemDao.findAllByOrderByDateUploadedDesc(pageable);
     abbreviatePoem(page);
+    includeImage(page);
     return page;
   }
 
@@ -67,6 +70,13 @@ public class PoemServiceImpl implements PoemService {
     }
   }
 
+  private void includeImage(Page<Poem> page) {
+    Random rand = new Random();
+    for (Poem poem : page.getContent()) {
+      int value = rand.nextInt(CAT_IMAGES + 1);
+      poem.setImage(value);
+    }
+  }
 
   @Override
   public void toggleFavorite(Long poemId, User user) {
@@ -88,6 +98,7 @@ public class PoemServiceImpl implements PoemService {
   public Page<Poem> findBySubmittedBy(User user, Pageable pageable) {
     Page<Poem> poems = poemDao.findBySubmittedByOrderByDateUploadedDesc(user, pageable);
     abbreviatePoem(poems);
+    includeImage(poems);
     return poems;
   }
 
@@ -101,6 +112,7 @@ public class PoemServiceImpl implements PoemService {
 
     Page<Poem> page = new PageImpl<Poem>(poems, pageable, poems.size());
     abbreviatePoem(page);
+    includeImage(page);
     return page;
   }
 }
