@@ -48,7 +48,7 @@
 
 <div th:fragment="pagecats">
     <div class="row">
-        <div th:each="poem : ${page.content}" class="col s12 m6 l6" >
+        <div th:each="poem : ${page.content}" class="col s12 m12 l6" >
             <div class="card horizontal">
                 <div class="card-image">
                     <img th:src="@{|/assets/css/images/graycats/${poem.image}.jpg|}" alt="A serious-looking gray cat"/>

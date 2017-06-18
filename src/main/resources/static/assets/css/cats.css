@@ -196,6 +196,10 @@ nav ul li.active, nav ul li:hover {
     border-bottom: 1px solid rgba(160, 160, 160, 0.2);
 }
 
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+   color: #039be5;
+}
+
 .card .card-title {
     text-align: center;
     font-size: 1.3rem;
@@ -270,7 +274,7 @@ nav ul li.active, nav ul li:hover {
 }
 
 .flash.success {
-    background-color: #7f9e40;
+    background-color: #0b69a7;
     color: #f3f6ee;
 }
 
