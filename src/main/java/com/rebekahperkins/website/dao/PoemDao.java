@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface PoemDao extends PagingAndSortingRepository<Poem, Long> {
   Page<Poem> findAllByOrderByDateUploadedDesc(Pageable pageable);
 
-  Page<Poem> findBySubmittedBy(User user, Pageable pageable);
+  Page<Poem> findBySubmittedByOrderByDateUploadedDesc(User user, Pageable pageable);
 }

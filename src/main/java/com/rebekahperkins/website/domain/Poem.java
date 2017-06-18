@@ -33,6 +33,8 @@ public class Poem {
   private LocalDateTime dateUploaded = LocalDateTime.now();
   @Transient
   private boolean favorite;
+  @Transient
+  private boolean abbr;
 
   public User getSubmittedBy() {
     return submittedBy;
@@ -88,5 +90,13 @@ public class Poem {
 
   public void setFavorite(boolean favorite) {
     this.favorite = favorite;
+  }
+
+  public boolean isAbbr() {
+    return abbr;
+  }
+
+  public void setAbbr(boolean abbr) {
+    this.abbr = abbr;
   }
 }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,8 @@ public class PoemServiceImpl implements PoemService {
 
   @Autowired
   private UserDao userDao;
+
+  public static final int MAX_LINES = 4;
 
   @Override
   public Poem addOrUpdate(Poem poem) { return poemDao.save(poem);
@@ -48,9 +51,22 @@ public class PoemServiceImpl implements PoemService {
 
   @Override
   public Page<Poem> findAll(Pageable pageable) {
-    Page<Poem> poems = poemDao.findAllByOrderByDateUploadedDesc(pageable);
-    return poems;
+    Page<Poem> page = poemDao.findAllByOrderByDateUploadedDesc(pageable);
+    abbreviatePoem(page);
+    return page;
   }
+
+  private void abbreviatePoem(Page<Poem> page) {
+    for (Poem poem : page.getContent()) {
+      String lines[] = poem.getContent().split("\\r?\\n");
+      if (lines.length > MAX_LINES){
+        poem.setAbbr(true);
+        String[] abbr = Arrays.copyOfRange(lines, 0, 4);
+        poem.setContent(String.join("\r\n", abbr));
+      }
+    }
+  }
+
 
   @Override
   public void toggleFavorite(Long poemId, User user) {
@@ -70,7 +86,8 @@ public class PoemServiceImpl implements PoemService {
 
   @Override
   public Page<Poem> findBySubmittedBy(User user, Pageable pageable) {
-    Page<Poem> poems = poemDao.findBySubmittedBy(user, pageable);
+    Page<Poem> poems = poemDao.findBySubmittedByOrderByDateUploadedDesc(user, pageable);
+    abbreviatePoem(poems);
     return poems;
   }
 
@@ -83,7 +100,7 @@ public class PoemServiceImpl implements PoemService {
         .collect(Collectors.toList());
 
     Page<Poem> page = new PageImpl<Poem>(poems, pageable, poems.size());
-
+    abbreviatePoem(page);
     return page;
   }
 }

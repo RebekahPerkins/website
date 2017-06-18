@@ -59,6 +59,7 @@
                     </div>
                     <div class="card-content">
                         <p th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">Content</p>
+                        <a th:if="${poem.abbr}" th:href="@{|cats/${poem.id}|}">...</a>
                     </div>
                 </div>
             </div>
