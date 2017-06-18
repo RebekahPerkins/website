@@ -805,6 +805,10 @@ label.button {
   margin-top: 20px;
 }
 
+.dropdown-content {
+  min-width: 170px;
+}
+
 /* Bugs in Materialize */
 @media only screen and (min-width: 993px) {
 
