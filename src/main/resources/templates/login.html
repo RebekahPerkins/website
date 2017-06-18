@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head('login')"></head>
 <body>
-
-<div class="navbar-fixed z-depth-2">
+<div class="navbar-fixed z-depth-1">
     <nav>
         <div class="container">
             <a th:href="@{/cats}" class="brand-logo">cat poems</a>
@@ -11,13 +10,13 @@
     </nav>
 </div>
 
+<div th:replace="layout :: flash"></div>
 <div class="container">
     <div class="row">
         <div class="col s12 l8">
             <div>
                 <br/>
                 <br/>
-                <div th:replace="layout :: flash"></div>
                 <form th:action="@{/login}" th:object="${user}" method="post">
                     <input th:field="*{username}" type="text" placeholder="username"/>
                     <br/>

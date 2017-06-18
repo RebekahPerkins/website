@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div th:fragment="nav" class="navbar-fixed z-depth-3">
+<div th:fragment="nav" class="navbar-fixed z-depth-1">
     <ul id="dropdown1" class="dropdown-content">
         <li th:classappend="${#httpServletRequest.servletPath.equals('/my_cats') ? 'active' : ''}"><a th:href="@{/my_cats}">Mine</a></li>
         <li th:classappend="${#httpServletRequest.servletPath.equals('/my_favorites') ? 'active' : ''}"><a th:href="@{/my_favorites}">My favorites</a></li>
