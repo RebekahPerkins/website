@@ -22,6 +22,13 @@ body {
   line-height: 20px;
 }
 
+.mid {
+  background: black;
+  opacity: 0.9;
+  padding: 40px;
+  border-radius: 10px;
+}
+
 a {
   color: #ffa7e1;
   text-decoration: none;
@@ -62,6 +69,7 @@ a:hover {
 .cat {
   border-radius: 50%;
   height: 150px;
+  transition: height 0.2s ease;
 }
 
 .cat:hover {
@@ -110,7 +118,7 @@ a:hover {
 .socmedcontainer {
   margin: auto;
   display: block;
-  width: 50%;
+  width: 70%;
 }
 
 .error {
