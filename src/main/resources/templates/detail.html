@@ -4,7 +4,6 @@
 <body>
 <div th:replace="layout :: nav"></div>
 <div th:replace="layout :: flash"></div>
-
 <div class="cat-detail container upload">
     <div class="row">
         <br/>
@@ -17,7 +16,7 @@
         <br/>
         <br/>
         <br/>
-        <p class="col s12 l8 center-align" th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >
+        <p class="col s12 l8 center-align background-kitty" th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" >
             Contents should be here
         </p>
         <br/>
@@ -41,7 +40,6 @@
         </div>
     </div>
 </div>
-
 <div th:replace="layout :: scripts"></div>
 </body>
 </html>
