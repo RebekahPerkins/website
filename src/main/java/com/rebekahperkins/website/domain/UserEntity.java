@@ -1,11 +1,8 @@
 package com.rebekahperkins.website.domain;
 
-import com.rebekahperkins.website.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import javax.persistence.Column;
@@ -20,7 +17,6 @@ import javax.persistence.Table;
 @Entity(name="Users")
 @Table(name="Users")
 public class UserEntity implements UserDetails {
-    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -119,7 +115,7 @@ public class UserEntity implements UserDetails {
     }
 
     public void setPassword(String password) {
-        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = password;
     }
 
     public boolean isEnabled() {
