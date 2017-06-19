@@ -2,8 +2,7 @@ package com.rebekahperkins.website.service;
 
 import com.rebekahperkins.website.dao.RoleDao;
 import com.rebekahperkins.website.dao.UserDao;
-import com.rebekahperkins.website.domain.Role;
-import com.rebekahperkins.website.domain.User;
+import com.rebekahperkins.website.domain.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username);
+        UserEntity user = findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -27,12 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
+    public UserEntity findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
     @Override
-    public User register(User user) {
+    public UserEntity register(UserEntity user) {
         user.setRole(roleDao.findByName("ROLE_USER"));
 
         return userDao.save(user);

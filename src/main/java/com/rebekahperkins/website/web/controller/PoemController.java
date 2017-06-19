@@ -2,6 +2,7 @@ package com.rebekahperkins.website.web.controller;
 
 import com.rebekahperkins.website.domain.Poem;
 import com.rebekahperkins.website.domain.User;
+import com.rebekahperkins.website.domain.UserEntity;
 import com.rebekahperkins.website.service.PoemService;
 import com.rebekahperkins.website.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +37,17 @@ public class PoemController {
 
   @RequestMapping(path = "/cats/{id}/favorite", method = RequestMethod.POST)
   public String toggle(@PathVariable Long id, Model model, Principal principal) {
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
-    poemService.toggleFavorite(id, loggedInUser);
+    UserEntity user = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    poemService.toggleFavorite(id, user);
 
     return "redirect:/cats/" + id;
   }
 
   @RequestMapping("/my_cats")
   public String getMyCats(Model model, Pageable pageable, Principal principal) {
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
-    Page<Poem> page = poemService.findBySubmittedBy(loggedInUser, pageable);
+    UserEntity user = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+
+    Page<Poem> page = poemService.findBySubmittedBy(user, pageable);
     model.addAttribute("page", page);
     model.addAttribute("referrer", "/my_cats");
     model.addAttribute("principal", principal);
@@ -54,8 +56,10 @@ public class PoemController {
 
   @RequestMapping("/my_favorites")
   public String getMyFavoriteCats(Model model, Pageable pageable, Principal principal) {
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
-    Page<Poem> page = poemService.findFavorites(loggedInUser, pageable);
+    User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    UserEntity userEntity = new UserEntity(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.isEnabled(), user.getRole());
+
+    Page<Poem> page = poemService.findFavorites(userEntity, pageable);
     model.addAttribute("page", page);
     model.addAttribute("referrer", "/my_favorites");
     model.addAttribute("principal", principal);
@@ -64,11 +68,12 @@ public class PoemController {
 
   @RequestMapping("cats/{id}")
   public String detail(@PathVariable Long id, Model model, Principal principal) {
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    UserEntity user = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+
     Poem poem = poemService.get(id);
-    poem.setFavorite(poemService.isFavorite(id, loggedInUser.getId()));
+    poem.setFavorite(poemService.isFavorite(id, user.getId()));
     model.addAttribute("poem", poem);
-    boolean canEdit = poem.getSubmittedBy().getId() == loggedInUser.getId();
+    boolean canEdit = poem.getSubmittedBy().getId() == user.getId();
     model.addAttribute("canedit", canEdit);
     model.addAttribute("principal", principal);
     return "detail";
@@ -86,9 +91,10 @@ public class PoemController {
 
   @RequestMapping(path = "/cats/{id}/edit", method = RequestMethod.GET)
   public String edit(@PathVariable Long id, Model model, Principal principal) {
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    UserEntity user = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+
     Poem poem = poemService.get(id);
-    if (poem.getSubmittedBy().getId() != loggedInUser.getId()){
+    if (poem.getSubmittedBy().getId() != user.getId()){
       return "redirect:/cats/" + id;
     }
     model.addAttribute("principal", principal);
@@ -110,15 +116,15 @@ public class PoemController {
       return "redirect:" + addOrEditRedirect;
     }
 
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    UserEntity user = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     if (poem.getId() == null){
-      poem.setSubmittedBy(loggedInUser);
+      poem.setSubmittedBy(user);
       poem = poemService.addOrUpdate(poem);
       redirectAttributes.addFlashAttribute("flash", new FlashMessage("Successfully added", FlashMessage.Status.SUCCESS));
     } else {
       Poem poemFromDb = poemService.get(poem.getId());
-      if (poemFromDb.getSubmittedBy().getId() == loggedInUser.getId()) {
-        poem.setSubmittedBy(loggedInUser);
+      if (poemFromDb.getSubmittedBy().getId() == user.getId()) {
+        poem.setSubmittedBy(user);
         poemService.addOrUpdate(poem);
         redirectAttributes.addFlashAttribute("flash",
             new FlashMessage("Successfully edited", FlashMessage.Status.SUCCESS));
@@ -129,7 +135,7 @@ public class PoemController {
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST, params={"delete"})
   public String delete (Poem poem, Principal principal, RedirectAttributes redirectAttributes) {
-    User loggedInUser = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    UserEntity loggedInUser = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
     Poem poemFromDb = poemService.get(poem.getId());
     if (poemFromDb.getSubmittedBy().getId() == loggedInUser.getId()) {
       poemService.delete(poemFromDb);

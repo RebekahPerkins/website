@@ -1,6 +1,5 @@
 package com.rebekahperkins.website.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,7 @@ public class Favorite {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
-  private User user;
+  private UserEntity user;
 
   @ManyToOne
   @JoinColumn(name = "poem_id")
@@ -26,7 +25,7 @@ public class Favorite {
   public Favorite(){
   }
 
-  public Favorite(Poem poem, User user) {
+  public Favorite(Poem poem, UserEntity user) {
     this.poem = poem;
     this.user = user;
   }
@@ -39,11 +38,11 @@ public class Favorite {
     this.id = id;
   }
 
-  public User getUser() {
+  public UserEntity getUser() {
     return user;
   }
 
-  public void setUser(User user) {
+  public void setUser(UserEntity user) {
     this.user = user;
   }
 

@@ -29,7 +29,7 @@ public class Poem {
   private String source;
   @ManyToOne
   @JoinColumn(name = "user_id")
-  private User submittedBy;
+  private UserEntity submittedBy;
   private LocalDateTime dateUploaded = LocalDateTime.now();
   @Transient
   private boolean favorite;
@@ -38,11 +38,11 @@ public class Poem {
   @Transient
   private int image;
 
-  public User getSubmittedBy() {
+  public UserEntity getSubmittedBy() {
     return submittedBy;
   }
 
-  public void setSubmittedBy(User submittedBy) {
+  public void setSubmittedBy(UserEntity submittedBy) {
     this.submittedBy = submittedBy;
   }
 

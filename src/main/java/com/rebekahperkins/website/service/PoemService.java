@@ -1,7 +1,7 @@
 package com.rebekahperkins.website.service;
 
 import com.rebekahperkins.website.domain.Poem;
-import com.rebekahperkins.website.domain.User;
+import com.rebekahperkins.website.domain.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,11 +15,11 @@ public interface PoemService {
 
   Page<Poem> findAll(Pageable pageable);
 
-  void toggleFavorite(Long id, User user);
+  void toggleFavorite(Long id, UserEntity user);
 
   boolean isFavorite(Long poemId, Long userId);
 
-  Page<Poem> findBySubmittedBy(User user, Pageable pageable);
+  Page<Poem> findBySubmittedBy(UserEntity user, Pageable pageable);
 
-  Page<Poem> findFavorites(User user, Pageable pageable);
+  Page<Poem> findFavorites(UserEntity user, Pageable pageable);
 }

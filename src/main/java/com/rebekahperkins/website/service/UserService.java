@@ -1,10 +1,10 @@
 package com.rebekahperkins.website.service;
 
-import com.rebekahperkins.website.domain.User;
+import com.rebekahperkins.website.domain.UserEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
-    User findByUsername(String username);
+    UserEntity findByUsername(String username);
 
-    User register(User user);
+    UserEntity register(UserEntity user);
 }

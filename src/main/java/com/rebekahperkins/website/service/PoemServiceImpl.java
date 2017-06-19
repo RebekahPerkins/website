@@ -5,14 +5,13 @@ import com.rebekahperkins.website.dao.PoemDao;
 import com.rebekahperkins.website.dao.UserDao;
 import com.rebekahperkins.website.domain.Favorite;
 import com.rebekahperkins.website.domain.Poem;
-import com.rebekahperkins.website.domain.User;
+import com.rebekahperkins.website.domain.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +30,6 @@ public class PoemServiceImpl implements PoemService {
   private UserDao userDao;
 
   public static final int MAX_LINES = 4;
-  public static final int MAX_LINE_LENGTH = 33;
   public static final int CAT_IMAGES = 7;
 
   @Override
@@ -80,7 +78,7 @@ public class PoemServiceImpl implements PoemService {
   }
 
   @Override
-  public void toggleFavorite(Long poemId, User user) {
+  public void toggleFavorite(Long poemId, UserEntity user) {
     Favorite favorite = favoriteDao.getByPoemIdAndUserId(poemId, user.getId());
     if (null == favorite){
       favorite = new Favorite(poemDao.findOne(poemId), user);
@@ -96,7 +94,7 @@ public class PoemServiceImpl implements PoemService {
   }
 
   @Override
-  public Page<Poem> findBySubmittedBy(User user, Pageable pageable) {
+  public Page<Poem> findBySubmittedBy(UserEntity user, Pageable pageable) {
     Page<Poem> poems = poemDao.findBySubmittedByOrderByDateUploadedDesc(user, pageable);
     abbreviatePoem(poems);
     includeImage(poems);
@@ -104,7 +102,7 @@ public class PoemServiceImpl implements PoemService {
   }
 
   @Override
-  public Page<Poem> findFavorites(User user, Pageable pageable) {
+  public Page<Poem> findFavorites(UserEntity user, Pageable pageable) {
     List<Favorite> favorites = favoriteDao.findByUser(user);
 
     List<Poem> poems = favorites.stream()

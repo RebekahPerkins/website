@@ -1,6 +1,7 @@
 package com.rebekahperkins.website.web.controller;
 
 import com.rebekahperkins.website.domain.User;
+import com.rebekahperkins.website.domain.UserEntity;
 import com.rebekahperkins.website.service.UserService;
 import com.rebekahperkins.website.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,16 @@ public class RegistrationController {
       return "redirect:/register";
     }
     try {
-      userService.register(user);
+      UserEntity userEntity = new UserEntity(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.isEnabled(), user.getRole());
+
+      userService.register(userEntity);
     } catch (Exception e) {
       redirectAttributes.addFlashAttribute("exception", e.getMessage());
       return "redirect:/register";
     }
 
     //TODO: check for username and password at login get
-    redirectAttributes.addAttribute("user", user);
+    //redirectAttributes.addAttribute("user", user);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Successfully registered", FlashMessage.Status.SUCCESS));
     return "redirect:/login";
   }

@@ -1,5 +1,6 @@
 package com.rebekahperkins.website.domain;
 
+import com.rebekahperkins.website.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,35 +8,61 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class User implements UserDetails {
+@Entity(name="Users")
+@Table(name="Users")
+public class UserEntity implements UserDetails {
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
     private String lastName;
 
-    @Size(min = 3, max = 30)
+    @Column(unique = true)
     private String username;
 
+    @Column(length = 60)
     private String password;
 
+    @Column(nullable = false)
     private boolean enabled = true;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String username, String password) {
+    public UserEntity(String username, String password) {
         this();
         this.username = username;
-        setPassword(password);
+        this.password = password;
     }
 
-    @Override
+  public UserEntity(Long id, String firstName, String lastName, String username,
+                    String password, boolean enabled, Role role) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.username = username;
+    this.password = password;
+    this.enabled = enabled;
+    this.role = role;
+  }
+
+  @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.createAuthorityList(role.getName());
     }
