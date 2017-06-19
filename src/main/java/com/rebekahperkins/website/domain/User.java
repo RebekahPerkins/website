@@ -3,6 +3,7 @@ package com.rebekahperkins.website.domain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
@@ -16,6 +17,8 @@ public class User {
     @Size(min = 3, max = 30)
     private String username;
 
+    @Size(min = 6, max = 30)
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$", message = "at least 1 number, 1 letter, and 6 characters long")
     private String password;
 
     private boolean enabled = true;
@@ -68,7 +71,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = password;
     }
 
     public boolean isEnabled() {

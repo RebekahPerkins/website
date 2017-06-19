@@ -37,7 +37,7 @@ public class RegistrationController {
     }
     try {
       UserEntity userEntity = new UserEntity(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.isEnabled(), user.getRole());
-
+      userEntity.setPassword(User.PASSWORD_ENCODER.encode(userEntity.getPassword()));
       userService.register(userEntity);
     } catch (Exception e) {
       redirectAttributes.addFlashAttribute("exception", e.getMessage());
