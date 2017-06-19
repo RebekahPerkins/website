@@ -160,6 +160,7 @@ nav ul li.active, nav ul li:hover {
 
 #sidenav-overlay {
     background-color: transparent;
+    pointer-events:none !important;
 }
 
 .share {
