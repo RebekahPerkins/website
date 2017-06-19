@@ -58,7 +58,9 @@
                         <a class="truncate" th:href="@{|cats/${poem.id}|}" th:text="${poem.name}">Name</a>
                     </div>
                     <div class="card-content truncate">
-                        <div class="truncate" th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">Content</div>
+                        <a class="nolinkstyle" th:href="@{|cats/${poem.id}|}">
+                            <h6 class="truncate nolinkstyle" th:utext="${#strings.replace( #strings.escapeXml( poem.content ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">Content</h6>
+                        </a>
                         <a th:if="${poem.abbr}" th:href="@{|cats/${poem.id}|}">...</a>
                     </div>
                 </div>
