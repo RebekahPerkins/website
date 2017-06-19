@@ -56,10 +56,9 @@ public class PoemController {
 
   @RequestMapping("/my_favorites")
   public String getMyFavoriteCats(Model model, Pageable pageable, Principal principal) {
-    User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
-    UserEntity userEntity = new UserEntity(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.isEnabled(), user.getRole());
+    UserEntity user = (UserEntity)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
-    Page<Poem> page = poemService.findFavorites(userEntity, pageable);
+    Page<Poem> page = poemService.findFavorites(user, pageable);
     model.addAttribute("page", page);
     model.addAttribute("referrer", "/my_favorites");
     model.addAttribute("principal", principal);
