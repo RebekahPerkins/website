@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div th:if="canedit">
+    <div th:if="${canedit}">
         <div class="row">
             <div class="col s12 l8">
                 <a th:href="@{|/cats/${poem.id}/edit|}" class="button">Edit</a>
