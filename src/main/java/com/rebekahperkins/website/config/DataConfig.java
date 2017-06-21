@@ -4,9 +4,11 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -16,7 +18,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.rebekahperkins.website.dao")
-@PropertySource("application.properties")
+@PropertySource("classpath:application.properties")
 public class DataConfig {
     @Autowired
     private Environment env;
@@ -36,6 +38,7 @@ public class DataConfig {
     }
 
     @Bean
+    @Profile("dev")
     public DataSource dataSource() {
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName(env.getProperty("website.db.driver"));
@@ -43,6 +46,12 @@ public class DataConfig {
         ds.setUsername(env.getProperty("website.db.username"));
         ds.setPassword(env.getProperty("website.db.password"));
         return ds;
+    }
+
+    @Bean(name = "dataSource")
+    @Profile("prod")
+    public DataSource jndiDataSource() {
+return new JndiDataSourceLookup().getDataSource(env.getProperty("website.jndi"));
     }
 
     private Properties getHibernateProperties() {
