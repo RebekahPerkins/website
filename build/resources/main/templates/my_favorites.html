@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('favorites')"></head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: flash"></div>
+
+<div class="cats container">
+    <div class="row">
+        <div class="col s12">
+            <h2 >My favorites</h2>
+        </div>
+    </div>
+
+    <div th:replace="layout :: pagecats"></div>
+    <div th:if="${page.totalPages eq 0}">
+        <h5>None yet</h5>
+        <a th:href="@{/cats}">Browse</a>
+    </div>
+
+</div>
+
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

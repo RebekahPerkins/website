@@ -1,0 +1,126 @@
+body {
+  background-image: url(images/lightblurs.png);
+}
+
+.hidden {
+  display: none;
+}
+
+.unhidden {
+  display: block;
+  margin: 60px;
+  font-size: 18px;
+}
+
+.content {
+  font-family: Verdana;
+  color: #dad9fc;
+  margin: auto;
+  margin-top: 200px;
+  width: 0%;
+  position: relative;
+  line-height: 20px;
+}
+
+.mid {
+  background: black;
+  opacity: 0.9;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+a {
+  color: #ffa7e1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b0adff;
+}
+
+.heading {
+  font-size: 24px;
+}
+
+#button1 {
+  position: absolute;
+  left: -150px;
+  top: -150px;
+}
+
+#button2 {
+  position: absolute;
+  right: -150px;
+  top: -150px;
+}
+
+#button3 {
+  position: absolute;
+  left: -150px;
+  bottom: -150px;
+}
+
+#button4 {
+  position: absolute;
+  right: -150px;
+  bottom: -150px;
+}
+
+.cat {
+  border-radius: 50%;
+  height: 150px;
+  transition: height 0.2s ease;
+}
+
+.cat:hover {
+  height: 200px;
+}
+
+.selectedcat {
+  height: 200px;
+}
+
+.cat1 {
+  border: 3px solid #e4aefa;
+}
+
+.cat2 {
+  border: 3px solid #ffa7e1;
+}
+
+.cat3 {
+  border: 3px solid #aadeff;
+}
+
+.cat4 {
+  border: 3px solid #b0adff;
+}
+
+.portrait {
+  border-radius: 50%;
+  display: block;
+  width: 50%;
+  margin: auto;
+  border: 6px solid #7a0ba5;
+}
+
+.socmed {
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  border: 3px solid #7a0ba5;
+}
+
+.socmed:hover {
+  border: 3px solid #b0adff;
+}
+
+.socmedcontainer {
+  margin: auto;
+  display: block;
+  width: 70%;
+}
+
+.error {
+  font-color: white;
+}

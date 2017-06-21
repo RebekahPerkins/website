@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rebekahperkins.website.web.controller.LoginControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-06-21T01:45:01" hostname="ic-PC" time="1.28">
+  <properties/>
+  <testcase name="cats_ShouldRenderCatsView" classname="com.rebekahperkins.website.web.controller.LoginControllerTest" time="1.28"/>
+  <system-out><![CDATA[18:45:01.533 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+18:45:01.541 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+18:45:01.542 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+18:45:01.843 [Test worker] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Looking for request mappings in application context: org.springframework.test.web.servlet.setup.StubWebApplicationContext@b945ab9
+18:45:01.877 [Test worker] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - 3 request handler methods found on class com.rebekahperkins.website.web.controller.LoginController: {public java.lang.String com.rebekahperkins.website.web.controller.LoginController.logoutPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)={[/logout],methods=[GET]}, public java.lang.String com.rebekahperkins.website.web.controller.LoginController.accessDenied()={[/access_denied]}, public java.lang.String com.rebekahperkins.website.web.controller.LoginController.getLoginPage(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)={[/login],methods=[GET]}}
+18:45:01.887 [Test worker] INFO org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Mapped "{[/logout],methods=[GET]}" onto public java.lang.String com.rebekahperkins.website.web.controller.LoginController.logoutPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18:45:01.889 [Test worker] INFO org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Mapped "{[/access_denied]}" onto public java.lang.String com.rebekahperkins.website.web.controller.LoginController.accessDenied()
+18:45:01.890 [Test worker] INFO org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.rebekahperkins.website.web.controller.LoginController.getLoginPage(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+18:45:02.246 [Test worker] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+18:45:02.247 [Test worker] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final
+18:45:02.310 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+18:45:02.312 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+18:45:02.326 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+18:45:02.328 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy21
+18:45:02.330 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+18:45:02.332 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+18:45:02.332 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+18:45:02.333 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+18:45:02.411 [Test worker] INFO org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.test.web.servlet.setup.StubWebApplicationContext@b945ab9
+18:45:02.454 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Looking for exception mappings: org.springframework.test.web.servlet.setup.StubWebApplicationContext@b945ab9
+18:45:02.474 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Initializing servlet ''
+18:45:02.475 [Test worker] INFO org.springframework.mock.web.MockServletContext - Initializing Spring FrameworkServlet ''
+18:45:02.475 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - FrameworkServlet '': initialization started
+18:45:02.479 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+18:45:02.479 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using LocaleResolver [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@2bbd8d8f]
+18:45:02.479 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using ThemeResolver [org.springframework.web.servlet.theme.FixedThemeResolver@65ed1019]
+18:45:02.480 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using RequestToViewNameTranslator [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7c957f3c]
+18:45:02.480 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using FlashMapManager [org.springframework.web.servlet.support.SessionFlashMapManager@7697a350]
+18:45:02.480 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+18:45:02.480 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - FrameworkServlet '': initialization completed in 5 ms
+18:45:02.481 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Servlet '' configured successfully
+18:45:02.518 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - DispatcherServlet with name '' processing GET request for [/login]
+18:45:02.520 [Test worker] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Looking up handler method for path /login
+18:45:02.523 [Test worker] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Returning handler method [public java.lang.String com.rebekahperkins.website.web.controller.LoginController.getLoginPage(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)]
+18:45:02.524 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Last-Modified value for [/login] is: -1
+18:45:02.582 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Rendering view [org.springframework.web.servlet.view.InternalResourceView: unnamed; URL [classpath:/templates/login.html]] in DispatcherServlet with name ''
+18:45:02.583 [Test worker] DEBUG org.springframework.web.servlet.view.InternalResourceView - Added model object 'user' of type [com.rebekahperkins.website.domain.User] to request in view with name 'null'
+18:45:02.583 [Test worker] DEBUG org.springframework.web.servlet.view.InternalResourceView - Added model object 'org.springframework.validation.BindingResult.user' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'null'
+18:45:02.583 [Test worker] DEBUG org.springframework.web.servlet.view.InternalResourceView - Forwarding to resource [classpath:/templates/login.html] in InternalResourceView 'null'
+18:45:02.583 [Test worker] DEBUG org.springframework.mock.web.MockRequestDispatcher - MockRequestDispatcher: forwarding to [classpath:/templates/login.html]
+18:45:02.584 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Successfully completed request
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

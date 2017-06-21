@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('browse')"></head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: flash"></div>
+
+<div class="cats container">
+    <br/><br/>
+    <div th:replace="layout :: pagecats"></div>
+
+</div>
+
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

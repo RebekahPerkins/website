@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/app.css}"/>
+</head>
+
+<body>
+
+<div id="content" class="content">
+    <a href="javascript:unhide('content1','button1')" id="button1"><img th:src="@{/assets/css/images/cat1.jpg}" alt="cat 1" class="cat cat1"/></a>
+    <a href="javascript:unhide('content2','button2')" id="button2"><img th:src="@{/assets/css/images/cat2.jpg}" alt="cat 2" class="cat cat2"/></a>
+
+    <div id="content1" class="mid hidden">
+        <p class="heading">Hello! I'm Rebekah Perkins.</p>
+        <img th:src="@{/assets/css/images/derouxphoto2.jpg}" alt="Portrait" class="portrait"/>
+        <p>I like developing software, primarily with Java or Python. I'm self-taught and have 4 1/2 years of industry experience in development. Currently I'm taking time off to advance my skills before getting a new job.</p>
+        <p>Thanks for visiting and enjoy!</p>
+        <div class="socmedcontainer">
+            <a href="https://www.linkedin.com/in/rebekah-perkins-a6162568/"><img th:src="@{/assets/css/images/linkedin.png}" alt="LinkedIn" class="socmed"/></a>
+            <a href="https://twitter.com/r_perkins_smith"><img th:src="@{/assets/css/images/twitter.png}" alt="Twitter" class="socmed"/></a>
+            <a href="https://www.facebook.com/rebekah.schmebekah"><img th:src="@{/assets/css/images/facebook.png}" alt="Facebook" class="socmed"/></a>
+            <a href="https://www.instagram.com/a_leopardbear/"><img th:src="@{/assets/css/images/instagram.png}" alt="Instagram" class="socmed"/></a>
+            <a href="https://github.com/RebekahPerkins/"><img th:src="@{/assets/css/images/github.png}" alt="Github" class="socmed"/></a>
+        </div>
+    </div>
+    <div id="content2" class="mid hidden">
+        <p class="heading">Resources</p>
+        <p><a href="https://teamtreehouse.com/">Treehouse has great courses</a></p>
+        <p><a href="http://backgrounds.mysitemyway.com/faqs/">Background from mysitemyway, licensed under creative commons</a></p>
+        <p><a href="http://ariamisu.deviantart.com/art/CAT-BASES-2-553337833">Cat icon base from deviantart, licensed under creative commons</a></p>
+        <p><a href="http://www.flaticon.com/packs/social-media-icons">Social media icons from flaticon, designed by Freepik, licensed under creative commons </a></p>
+    </div>
+    <div id="content3" class="mid hidden">
+        <p class="heading">Resume</p>
+        <p>
+            <a th:href="@{/resume}">Printable view</a>
+            <br/>
+            REBEKAH PERKINS<br/>
+            r.perkins.smith@gmail.com<br/>
+            605 Boylston Ave E, apt 108, Seattle, WA, 98102<br/>
+            (206)799-6411<br/>
+            <br/>
+            <br/>
+            OBJECTIVES<br/>
+            To obtain a software engineer position, with focus on Python or data analysis<br/>
+            <br/>
+            EDUCATION<br/>
+             &#8226; LSU  &#124;  2007  &#124;  Master&#39;s of Science in Environmental Science, with Statistics Minor<br/>
+             &#8226; University of Louisiana  &#124;  2005  &#124;  Bachelor&#39;s in General Studies<br/>
+            <br/>
+            EXPERIENCE<br/>
+            Conenza  &#124;  Software developer  &#124;  December 2013 &#45; present<br/>
+             &#8226; Database reporting, design, management<br/>
+             &#8226; Third party REST API integrations<br/>
+             &#8226; New client implementations<br/>
+             &#8226; Search and indexing feature<br/>
+             &#8226; Migrated IceFaces code to Spring MVC with jsp<br/>
+             &#8226; Advanced QA such as security testing, API testing, Oauth testing<br/>
+             &#8226; Fixed bugs throughout platform<br/>
+            Conenza  &#124;  QA  &#124;  January 2013 &#45; December 2013<br/>
+             &#8226; Black box testing<br/>
+            <br/>
+            SKILLS<br/>
+             &#8226;  Java, MySQL, Python<br/>
+             &#8226;  REST API, Spring MVC, Hibernate, reporting<br/>
+
+        </p>
+    </div>
+    <div id="content4" class="mid hidden">
+        <br/><br/><br/><br/><br/>
+        <p class="heading"><a href="@{/cats}">CAT POEMS</a></p>
+        <p>Here is a Java web app I made with Spring boot and Spring mvc, Hibernate, and Thymeleaf.</p>
+        <br/><br/><br/><br/><br/>
+    </div>
+
+    <a href="javascript:unhide('content3','button3')" id="button3"><img th:src="@{/assets/css/images/cat3.jpg}" alt="cat 3" class="cat cat3"/></a>
+    <a href="javascript:unhide('content4','button4')" id="button4"><img th:src="@{/assets/css/images/cat4.jpg}" alt="cat 4" class="cat cat4"/></a>
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/script.js}"></script>
+</body>
+
+</html>
